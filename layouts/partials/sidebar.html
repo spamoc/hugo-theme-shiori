@@ -21,3 +21,12 @@
 {{ if .Site.Params.twitter_username }}
 <p><a href="https://twitter.com/{{ .Site.Params.twitter_username }}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true" data-dnt="true" data-size="large">Follow @{{ .Site.Params.twitter_username }}</a></p>
 {{ end }}
+
+{{ with .Params.tags }}<div>Tags:{{ range . }} <a href="{{ $.Site.BaseURL }}tags/{{ . }}/">{{ . }}</a> {{ end }}</div>{{ end }}
+
+<h3>Tags</h3>
+<ul id="all-tags">
+  {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <li><a href="/tags/{{ $name | urlize }}">{{ $name }}</a></li>
+  {{ end }}
+</ul>
